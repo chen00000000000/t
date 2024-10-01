@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three.js Example</title>
+  <!-- 替換為新的 Three.js CDN -->
+  <script src="https://unpkg.com/three@0.152.0/build/three.min.js"></script>
+</head>
+<body>
+  <script>
+    // 創建場景
+    const scene = new THREE.Scene();
+    
+    // 創建攝像機
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    
+    // 創建渲染器
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // 創建立方體
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // 設置攝像機位置
+    camera.position.z = 5;
+
+    // 動畫循環函數
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;  // 讓立方體繞 x 軸旋轉
+      cube.rotation.y += 0.01;  // 讓立方體繞 y 軸旋轉
+      renderer.render(scene, camera);  // 渲染場景
+    }
+
+    animate();  // 開始動畫
+  </script>
+</body>
+</html>
